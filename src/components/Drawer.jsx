@@ -1,22 +1,26 @@
 import React from 'react';
-const Drawer = (props) => {
+const Drawer = ({onClose, items = []}) => {
     return (
         <div className="overlay">
             <div className="drawer d">
                 <h2 className="mb-30 d-flex justify-between">
                     Корзина
-                    <img onClick={props.onClose} className="removeBtn cu-p" src="/img/remove.svg" alt="remove" />
+                    <img onClick={onClose} className="removeBtn cu-p" src="/img/remove.svg" alt="remove" />
                 </h2>
 
                 <div className="items">
-                    <div className="cartItem mb-20 d-flex align-center">
-                        <img className="mr-20" width={70} height={70} src="/img/sneakers/1.jpg" alt="Sneakers" />
-                        <div className="mr-20">
-                            <p>Мужские Кроссовки Nike Air Max 270</p>
-                            <b className="mb-5">12 999 грн.</b>
-                        </div>
-                        <img className="removeBtn" src="/img/remove.svg" alt="remove" />
-                    </div>
+                    {items.map(item => {
+                        return(
+                            <div className="cartItem mb-20 d-flex align-center">
+                                <img className="mr-20" width={70} height={70} src={item.imageUrl} alt="Sneakers" />
+                                <div className="mr-20">
+                                    <p>{item.title}</p>
+                                    <b className="mb-5">{item.price} грн.</b>
+                                </div>
+                                <img className="removeBtn" src="/img/remove.svg" alt="remove" />
+                            </div>
+                        )
+                    })} 
                 </div>
 
                 <div className="cartTotalBlock">
